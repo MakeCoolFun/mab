@@ -29,7 +29,7 @@ const MDList = ({
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(10);
     const rows = get_result;
-    const safeRows = Array.isArray(rows) ? rows : [];
+
     //페이지를 변경할 때 사용하는 func
     const HandleChangePage = (event: unknown, newPage: number) => {
         setPage(newPage);
@@ -50,7 +50,7 @@ const MDList = ({
     ];
     //====
 
-    console.log('safeRows :::', safeRows);
+    console.log('rows :::', rows);
 
     return (
         <>
@@ -63,7 +63,7 @@ const MDList = ({
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {safeRows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
+                        {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
                             return (
                                 <TableRow hover role="checkbox" tabIndex={-1} key={row.id}>
                                     {columns.map((column) => {
