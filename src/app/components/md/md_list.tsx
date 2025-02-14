@@ -50,6 +50,8 @@ const MDList = ({
     ];
     //====
 
+    console.log('safeRows :::', safeRows);
+
     return (
         <>
             <TableContainer component={Paper}>
