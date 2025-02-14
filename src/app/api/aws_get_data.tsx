@@ -40,6 +40,7 @@ const GetListData = async (type: GetType, id: string = '') => {
         console.log('GET DATA ERROR');
     }
 
+    console.log('data', data_result);
     if (data_result === null) return [];
 
     return data_result;
