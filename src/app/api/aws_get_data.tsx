@@ -23,24 +23,40 @@ const GetListData = async (type: GetType, id: string = '') => {
     //env.
     const data_url = process.env.NEXT_PUBLIC_AWS_PATH;
 
+    // try {
+    //     //
+    //     await fetch(`${data_url}/data_GET`, {
+    //         method: 'POST',
+    //         headers: { 'Content-Type': 'application/json' },
+    //         body: JSON.stringify(payload),
+    //         mode: 'cors',
+    //         cache: 'no-store',
+    //     })
+    //         .then((response) => response.json())
+    //         .then((data) => {
+    //             console.log('data', data);
+    //             data_result = type.includes('SCAN') ? data : [data[0].response.Item];
+    //         });
+    // } catch (e) {
+    //     console.log('GET DATA ERROR');
+    // }
+
     try {
         //
-        await fetch(`${data_url}/data_GET`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(payload),
-            mode: 'cors',
-            cache: 'no-store',
-        })
-            .then((response) => response.json()) // 본문을 한 번만 읽음
-            .then((data) => {
-                data_result = type.includes('SCAN') ? data : [data[0].response.Item];
-            });
+        data_result = await (
+            await fetch(`${data_url}/data_GET`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload),
+                mode: 'cors',
+                cache: 'no-store',
+            })
+        ).json();
     } catch (e) {
         console.log('GET DATA ERROR');
     }
 
-    console.log('data', data_result);
+    console.log('result ', data_result);
     if (data_result === null) return [];
 
     return data_result;
