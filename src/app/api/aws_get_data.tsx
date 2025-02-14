@@ -15,7 +15,7 @@ const GetListData = async (type: GetType, id: string = '') => {
     if (check_jwt === null) return [];
 
     const payload = {
-        s_key: process.env.NEXT_PUBLIC_CHECK_JWT,
+        s_key: process.env.NEXT_PUBLIC_CHECK_J,
         get_type: type,
         id: type.includes('GET') ? id : '',
     };
