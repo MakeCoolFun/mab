@@ -20,6 +20,7 @@ const GetListData = async (type: GetType, id: string = '') => {
         id: type.includes('GET') ? id : '',
     };
 
+    //env.
     const data_url = process.env.NEXT_PUBLIC_AWS_PATH;
 
     try {
